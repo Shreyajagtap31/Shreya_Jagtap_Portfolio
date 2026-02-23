@@ -112,7 +112,7 @@ nav {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
   padding-top: 8rem;
 }
 .hero-tag {
@@ -129,6 +129,17 @@ nav {
   color: var(--muted);
 }
 .hero-about strong { color: var(--black); font-weight: 600; }
+
+/* About text sits ABOVE the headline */
+.hero-about-above {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 420px;
+  margin-bottom: 1.2rem;
+}
+.hero-about-above strong { color: var(--black); font-weight: 600; }
+
 .hero-headline {
   font-family: 'Fraunces', serif;
   font-size: clamp(4.5rem, 10vw, 10rem);
@@ -419,6 +430,28 @@ nav {
 .exp-highlights li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.75rem; }
 .exp-highlights strong { color: var(--black); font-weight: 600; }
 
+/* EDUCATION */
+#education { border-bottom: 1px solid var(--border); }
+.edu-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  padding: 3rem;
+  border-bottom: 1px solid var(--border);
+  gap: 3rem;
+  transition: background 0.25s;
+}
+.edu-row:hover { background: var(--white); }
+.edu-year { font-family: 'Fraunces', serif; font-size: 0.88rem; font-weight: 300; color: var(--muted); padding-top: 0.25rem; }
+.edu-degree {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.3rem;
+}
+.edu-school { font-size: 0.78rem; color: var(--accent); font-weight: 500; margin-bottom: 0.5rem; }
+.edu-detail { font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
+
 /* QUOTE */
 .quote-banner {
   background: var(--accent);
@@ -502,7 +535,6 @@ footer {
   letter-spacing: 0.06em;
 }
 
-
 /* PERSONAL */
 #personal { border-bottom: 1px solid var(--border); }
 .personal-grid {
@@ -523,7 +555,6 @@ footer {
 .personal-card:hover .personal-card-body,
 .personal-card:hover .personal-card-tag { color: rgba(255,255,255,0.4); }
 .personal-card:hover .personal-card-title { color: var(--white); }
-.personal-card:hover .personal-card-icon { filter: none; }
 .personal-card-num {
   font-family: 'Fraunces', serif;
   font-size: 0.72rem;
@@ -531,11 +562,7 @@ footer {
   margin-bottom: 1.5rem;
   font-weight: 300;
 }
-.personal-card-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1.2rem;
-  display: block;
-}
+.personal-card-icon { font-size: 2.5rem; margin-bottom: 1.2rem; display: block; }
 .personal-card-title {
   font-family: 'Fraunces', serif;
   font-size: clamp(1.4rem, 2.5vw, 2rem);
@@ -591,7 +618,6 @@ footer {
   nav { padding: 1.2rem 1.5rem; }
   #hero { padding: 0 1.5rem 3rem; }
   .hero-top { flex-direction: column; gap: 1.5rem; padding-top: 6rem; }
-  .hero-about { max-width: 100%; }
   #about { grid-template-columns: 1fr; }
   .about-left { border-right: none; border-bottom: 1px solid var(--border); padding: 3rem 1.5rem; }
   .about-right { padding: 3rem 1.5rem; }
@@ -600,10 +626,9 @@ footer {
   .skill-row .skill-tools, .skill-row .pill-group { display: none; }
   .project-row { grid-template-columns: 50px 1fr; padding: 2rem 1.5rem; }
   .proj-arrow { display: none; }
-  .exp-row { grid-template-columns: 1fr; padding: 2rem 1.5rem; gap: 0.5rem; }
+  .exp-row, .edu-row { grid-template-columns: 1fr; padding: 2rem 1.5rem; gap: 0.5rem; }
   .personal-grid { grid-template-columns: 1fr; }
   .personal-card { padding: 2rem 1.5rem; }
-  .personal-footnote { padding: 1.5rem; }
   .contact-top { padding: 4rem 1.5rem 2rem; }
   .contact-grid { grid-template-columns: 1fr; }
   .contact-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 2rem 1.5rem; }
@@ -629,6 +654,7 @@ footer {
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#projects">Work</a>
+    <a href="#education">Education</a>
     <a href="#personal">Personal</a>
     <a href="#contact">Contact</a>
   </div>
@@ -638,13 +664,17 @@ footer {
 <section id="hero">
   <div class="hero-top">
     <div class="hero-tag">Data Analyst · Madison, WI · Open to Work</div>
-    <div class="hero-about">
-      I'm a <strong>data analyst</strong> who turns chaotic, million-row datasets into clarity. Pipelines, dashboards, and experiments that actually change how teams make decisions.
-    </div>
   </div>
+
+  <!-- About text NOW sits directly above the headline -->
+  <div class="hero-about-above">
+    I'm a <strong>data analyst</strong> who turns chaotic, million-row datasets into clarity. Pipelines, dashboards, and experiments that actually change how teams make decisions.
+  </div>
+
   <div class="hero-headline">
     Making data<br>mean <em>something</em><br>since 2021
   </div>
+
   <div class="hero-bottom">
     <div class="hero-status">
       <span class="status-dot"></span>
@@ -672,7 +702,6 @@ footer {
     <div class="marquee-item"><span>✦</span> Predictive Modeling</div>
     <div class="marquee-item"><span>✦</span> Funnel Analysis</div>
     <div class="marquee-item"><span>✦</span> Power Automate</div>
-    <!-- duplicate for seamless loop -->
     <div class="marquee-item"><span>✦</span> Python</div>
     <div class="marquee-item"><span>✦</span> SQL</div>
     <div class="marquee-item"><span>✦</span> Power BI</div>
@@ -757,7 +786,6 @@ footer {
     <h2>Selected <em>work</em></h2>
     <div class="section-label" style="margin-bottom:0">3 projects</div>
   </div>
-
   <div class="project-row reveal">
     <div class="proj-num">01</div>
     <div>
@@ -772,7 +800,6 @@ footer {
     </div>
     <div class="proj-arrow">↗</div>
   </div>
-
   <div class="project-row reveal">
     <div class="proj-num">02</div>
     <div>
@@ -787,12 +814,11 @@ footer {
     </div>
     <div class="proj-arrow">↗</div>
   </div>
-
   <div class="project-row reveal">
     <div class="proj-num">03</div>
     <div>
       <div class="proj-title">Enterprise KPI Dashboard Suite</div>
-      <div class="proj-desc">Led end-to-end design and delivery of 10+ Power BI + Tableau dashboards across procurement, logistics, and ops. More than just charts. Audited and standardized metric definitions across three departments, killing the "which number is right?" problem that wasted hours every week.</div>
+      <div class="proj-desc">Led end-to-end design and delivery of 10+ Power BI + Tableau dashboards across procurement, logistics, and ops. Audited and standardized metric definitions across three departments, killing the "which number is right?" problem that wasted hours every week.</div>
       <div class="proj-metrics">
         <div><span class="proj-metric-val">−35%</span><span class="proj-metric-label">Metric ambiguity</span></div>
         <div><span class="proj-metric-val">−70%</span><span class="proj-metric-label">Manual follow-ups</span></div>
@@ -831,11 +857,28 @@ footer {
       <div class="exp-company">In-time Consultancy · India</div>
     </div>
   </div>
-  <div class="exp-row reveal">
-    <div class="exp-year">Sep 2025 to<br>May 2027</div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header-row">
+    <h2><em>Education</em></h2>
+    <div class="section-label" style="margin-bottom:0">Academic background</div>
+  </div>
+  <div class="edu-row reveal">
+    <div class="edu-year">Sep 2025 to<br>May 2027</div>
     <div>
-      <div class="exp-role">M.S. Information Systems, Data Analytics</div>
-      <div class="exp-company">University of Wisconsin–Madison · Currently enrolled</div>
+      <div class="edu-degree">M.S. Information Systems — Data Analytics</div>
+      <div class="edu-school">University of Wisconsin–Madison · Currently enrolled</div>
+      <div class="edu-detail">Focused on machine learning, data infrastructure, and analytics systems design.</div>
+    </div>
+  </div>
+  <div class="edu-row reveal">
+    <div class="edu-year">Aug 2017 to<br>Jun 2021</div>
+    <div>
+      <div class="edu-degree">B.E. Electronics Engineering</div>
+      <div class="edu-school">University of Mumbai · India</div>
+      <div class="edu-detail">Foundation in systems thinking, signal processing, and computational methods.</div>
     </div>
   </div>
 </section>
@@ -846,7 +889,6 @@ footer {
     <h2>Beyond <em>data</em></h2>
     <div class="section-label" style="margin-bottom:0">The human part</div>
   </div>
-
   <div class="personal-grid">
     <div class="personal-card reveal">
       <div class="personal-card-num">01</div>
@@ -855,7 +897,6 @@ footer {
       <p class="personal-card-body">When I'm not wrangling a 5M-row dataset, you'll find me on the dance floor. It's the one place where there's no "wrong output". Just movement. Also the only form of cardio I'll willingly do.</p>
       <div class="personal-card-tag">Hobby #1</div>
     </div>
-
     <div class="personal-card reveal">
       <div class="personal-card-num">02</div>
       <div class="personal-card-icon">📱</div>
@@ -863,7 +904,6 @@ footer {
       <p class="personal-card-body">Instagram memes are my decompression ritual. I've curated a feed so good it's practically an algorithm study. Yes, I've thought about that analytically. No, I'm not sorry.</p>
       <div class="personal-card-tag">Hobby #2</div>
     </div>
-
     <div class="personal-card reveal">
       <div class="personal-card-num">03</div>
       <div class="personal-card-icon">☕</div>
@@ -871,7 +911,6 @@ footer {
       <p class="personal-card-body">My ETL pipelines start only after the first cup. I once tried to skip it and produced a dashboard with the axes swapped. We don't talk about that anymore.</p>
       <div class="personal-card-tag">Non-negotiable</div>
     </div>
-
     <div class="personal-card reveal">
       <div class="personal-card-num">04</div>
       <div class="personal-card-icon">🧠</div>
@@ -880,7 +919,6 @@ footer {
       <div class="personal-card-tag">Currently curious</div>
     </div>
   </div>
-
   <div class="personal-footnote reveal">
     <span>Fun fact</span> I moved from Mumbai to Madison, WI. The weather is the exact opposite of everything I knew. The coffee helps.
   </div>
@@ -902,18 +940,12 @@ footer {
     <div class="contact-col reveal">
       <div class="contact-col-label">Direct</div>
       <a class="contact-link-item" href="mailto:sbjagtap@wisc.edu">sbjagtap@wisc.edu <span>100% chance I read it →</span></a>
-      <a class="contact-link-item" href="tel:+16082097751">
-        +1 608-209-7751 <span>Text first if possible →</span>
-      </a>
+      <a class="contact-link-item" href="tel:+16082097751">+1 608-209-7751 <span>Text first if possible →</span></a>
     </div>
     <div class="contact-col reveal">
       <div class="contact-col-label">Online</div>
-      <a class="contact-link-item" href="https://linkedin.com/in/shreya-jagtap" target="_blank">
-        LinkedIn <span>Professional me →</span>
-      </a>
-      <a class="contact-link-item" href="https://github.com/shreya-jagtap" target="_blank">
-        GitHub <span>Where the code lives →</span>
-      </a>
+      <a class="contact-link-item" href="https://linkedin.com/in/shreya-jagtap" target="_blank">LinkedIn <span>Professional me →</span></a>
+      <a class="contact-link-item" href="https://github.com/shreya-jagtap" target="_blank">GitHub <span>Where the code lives →</span></a>
     </div>
   </div>
 </section>
@@ -925,7 +957,6 @@ footer {
 </footer>
 
 <script>
-// LOADER
 const bar = document.getElementById('loaderBar');
 const pct = document.getElementById('loaderPct');
 const loader = document.getElementById('loader');
@@ -941,7 +972,6 @@ const iv = setInterval(() => {
   pct.textContent = 'Loading — ' + Math.floor(p) + '%';
 }, 80);
 
-// SCROLL REVEAL
 const obs = new IntersectionObserver(entries => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
