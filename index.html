@@ -9,10 +9,12 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 :root {
-  --cream: #f5f0e8; --black: #0f0f0f; --accent: #e84b2a;
-  --muted: #7a7468; --border: #d9d3c7; --white: #ffffff;
+  --cream: #edeeec; --black: #14181c; --accent: #2b4c6f;
+  --muted: #6b7278; --border: #d2d5d3; --white: #ffffff;
 }
 body { background: var(--cream); color: var(--black); font-family: 'Instrument Sans', sans-serif; overflow-x: hidden; }
+p, li, .exp-bullets li, .proj-desc, .comp-desc, .about-body, .personal-card p, .award-detail, .hero-about-above, .hero-intro { text-wrap: pretty; }
+h1, h2, h3, .hero-headline, .section-title, .comp-title, .proj-title, .exp-role, .contact-headline, .quote-text { text-wrap: balance; }
 em { font-style: italic; color: var(--accent); }
 
 #loader { position: fixed; inset: 0; background: var(--black); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; transition: opacity 0.6s ease, visibility 0.6s ease; }
@@ -37,8 +39,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 .hero-headline { font-family: 'Fraunces', serif; font-size: clamp(3.4rem, 8.5vw, 7rem); font-weight: 900; line-height: 0.94; letter-spacing: -0.03em; text-transform: uppercase; max-width: 900px; }
 .hero-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 2rem; }
 .hero-status { display: flex; align-items: center; gap: 0.6rem; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; }
-.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #2dc653; animation: pulse-dot 2s ease-in-out infinite; }
-@keyframes pulse-dot { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(0.6); opacity: 0.5; } }
+.status-dot { width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; animation: gear-turn 6s linear infinite; }
+.status-dot svg { width: 100%; height: 100%; fill: var(--accent); }
+@keyframes gear-turn { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 .ticker-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1rem 0; background: var(--white); }
 .ticker-track { display: flex; animation: marquee 32s linear infinite; width: max-content; }
@@ -147,8 +150,9 @@ footer { background: var(--black); color: rgba(255,255,255,0.4); display: flex; 
 .screw.tl { top: 6px; left: 6px; } .screw.tr { top: 6px; right: 6px; }
 .screw.bl { bottom: 6px; left: 6px; } .screw.br { bottom: 6px; right: 6px; }
 .gear-icon { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.4; color: var(--muted); }
-.hero-watermark { position: absolute; right: 2rem; top: 6rem; width: 160px; height: 160px; opacity: 0.06; pointer-events: none; }
-.hero-watermark path, .hero-watermark circle { fill: var(--black); }
+.hero-watermark { position: absolute; right: -3rem; top: 3rem; width: 320px; height: 320px; opacity: 0.1; pointer-events: none; }
+.hero-watermark path { fill: var(--accent); }
+.hero-nut { position: absolute; right: 1rem; bottom: -2rem; width: 150px; height: 150px; opacity: 0.14; pointer-events: none; }
 
 .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -183,19 +187,13 @@ footer { background: var(--black); color: rgba(255,255,255,0.4); display: flex; 
 
 <section id="hero" style="border-bottom:none;">
   <svg class="hero-watermark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="6"/>
-    <path d="M50 50 L50 10 A40 40 0 0 1 84 30 Z"/>
-    <path d="M50 50 L84 30 A40 40 0 0 1 84 70 Z"/>
-    <path d="M50 50 L84 70 A40 40 0 0 1 50 90 Z"/>
-    <path d="M50 50 L50 90 A40 40 0 0 1 16 70 Z"/>
-    <path d="M50 50 L16 70 A40 40 0 0 1 16 30 Z"/>
-    <path d="M50 50 L16 30 A40 40 0 0 1 50 10 Z"/>
+    <path d="M50 4c3 0 6 .3 8.8 1l1.6 8.6a38 38 0 0 1 9.6 5.5l8.3-3a42 42 0 0 1 9 9.1l-3 8.3a38 38 0 0 1 5.5 9.5l8.6 1.7c.6 2.8.9 5.7.9 8.7s-.3 5.9-.9 8.7l-8.6 1.7a38 38 0 0 1-5.5 9.5l3 8.3a42 42 0 0 1-9 9.1l-8.3-3a38 38 0 0 1-9.6 5.5l-1.6 8.6a42 42 0 0 1-17.6 0l-1.6-8.6a38 38 0 0 1-9.6-5.5l-8.3 3a42 42 0 0 1-9-9.1l3-8.3a38 38 0 0 1-5.5-9.5L2.7 58.7A44 44 0 0 1 1.8 50c0-3 .3-5.9.9-8.7l8.6-1.7a38 38 0 0 1 5.5-9.5l-3-8.3a42 42 0 0 1 9-9.1l8.3 3a38 38 0 0 1 9.6-5.5l1.6-8.6C44 4.3 47 4 50 4zm0 27a19 19 0 1 0 0 38 19 19 0 0 0 0-38z"/>
   </svg>
   <div class="hero-tag reveal">Production Planning &amp; Supply Chain · North Carolina · Open to Work</div>
-  <div class="hero-about-above reveal"><strong>4+ years leading production planning and supply chain strategy</strong> - from ERP transformation and supplier risk management at Jio Platforms to owning production scheduling for four live lines at BorgWarner Turbo Systems.</div>
-  <div class="hero-headline reveal">Keeping the<br>lines <em>moving</em></div>
+  <div class="hero-about-above reveal"><strong>4+ years leading production planning and supply chain strategy</strong>. From ERP transformation and supplier risk management at Jio Platforms to owning production scheduling for four live lines at BorgWarner Turbo Systems.</div>
+  <div class="hero-headline reveal">Manufacturing, <em>on schedule</em></div>
   <div class="hero-bottom reveal">
-    <div class="hero-status"><span class="status-dot"></span>Available for 2027 roles</div>
+    <div class="hero-status"><span class="status-dot"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm9.4 2.1-1.9-.3a7.6 7.6 0 0 0-.6-1.5l1.1-1.6a1 1 0 0 0-.1-1.3l-1.2-1.2a1 1 0 0 0-1.3-.1l-1.6 1.1a7.6 7.6 0 0 0-1.5-.6l-.3-1.9a1 1 0 0 0-1-.8h-1.8a1 1 0 0 0-1 .8l-.3 1.9a7.6 7.6 0 0 0-1.5.6L6.8 4.6a1 1 0 0 0-1.3.1L4.3 5.9a1 1 0 0 0-.1 1.3l1.1 1.6a7.6 7.6 0 0 0-.6 1.5l-1.9.3a1 1 0 0 0-.8 1v1.8a1 1 0 0 0 .8 1l1.9.3c.15.53.36 1.03.6 1.5l-1.1 1.6a1 1 0 0 0 .1 1.3l1.2 1.2a1 1 0 0 0 1.3.1l1.6-1.1c.47.24.97.45 1.5.6l.3 1.9a1 1 0 0 0 1 .8h1.8a1 1 0 0 0 1-.8l.3-1.9c.53-.15 1.03-.36 1.5-.6l1.6 1.1a1 1 0 0 0 1.3-.1l1.2-1.2a1 1 0 0 0 .1-1.3l-1.1-1.6c.24-.47.45-.97.6-1.5l1.9-.3a1 1 0 0 0 .8-1v-1.8a1 1 0 0 0-.8-1z"/></svg></span>Available for 2027 roles</div>
   </div>
 </section>
 
@@ -259,7 +257,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.4); display: flex; 
       <div class="comp-card reveal">
         <div class="comp-num">01</div>
         <div class="comp-title">Production Scheduling &amp; MRP</div>
-        <div class="comp-desc">Owning production order release and MRP execution across manufacturing lines - clear-to-build tracking, on-promise commitments, and priority sequencing when the floor needs a call made fast.</div>
+        <div class="comp-desc">Owning production order release and MRP execution across manufacturing lines. Clear-to-build tracking, on-promise commitments, and priority sequencing when the floor needs a call made fast.</div>
         <div class="pill-group"><span class="pill accent">SAP PP/SCM</span><span class="pill">MRP</span><span class="pill">MPS</span><span class="pill">BOM</span><span class="pill">Scheduling</span><span class="pill">Production Order Management</span><span class="pill">MES/APS</span><span class="pill">On-Promise Commitments</span><span class="pill">Priority Sequencing</span><span class="pill">Shop Floor Coordination</span></div>
       </div>
       <div class="comp-card reveal">
@@ -277,7 +275,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.4); display: flex; 
       <div class="comp-card reveal">
         <div class="comp-num">04</div>
         <div class="comp-title">Data &amp; Analytics</div>
-        <div class="comp-desc">Turning raw planning data into the models, dashboards, and reports that drive real decisions - from rolling-average demand models to executive-facing KPI suites.</div>
+        <div class="comp-desc">Turning raw planning data into the models, dashboards, and reports that drive real decisions. From rolling-average demand models to executive-facing KPI suites.</div>
         <div class="pill-group"><span class="pill">SQL</span><span class="pill">PostgreSQL</span><span class="pill">Python</span><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Power BI</span><span class="pill">DAX</span><span class="pill">Power Query</span><span class="pill">Excel VBA</span><span class="pill">XLOOKUP</span><span class="pill">Pivot Tables</span><span class="pill">Tableau</span><span class="pill">Power Automate</span></div>
       </div>
       <div class="comp-card reveal">
@@ -319,7 +317,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.4); display: flex; 
       <div>
         <div class="proj-title">Risk Tracker &amp; Production Planner Command Center</div>
         <div class="proj-stack">Excel · VBA · Pivot Tables · 2026</div>
-        <div class="proj-desc">A self-initiated multi-tab Excel toolset built alongside day-to-day planning work at BorgWarner - keeping schedule and material risk visible across the four Arden lines.</div>
+        <div class="proj-desc">A self-initiated multi-tab Excel toolset built alongside day-to-day planning work at BorgWarner. Keeping schedule and material risk visible across the four Arden lines.</div>
         <div class="pill-group"><span class="pill">Excel</span><span class="pill">VBA</span><span class="pill">Pivot Tables</span></div>
       </div>
       <div class="proj-arrow">↗</div>
@@ -338,9 +336,9 @@ footer { background: var(--black); color: rgba(255,255,255,0.4); display: flex; 
         <div class="exp-role">Production Planning Co-op</div>
         <div class="exp-company">BorgWarner Turbo Systems · Arden, NC</div>
         <ul class="exp-bullets">
-          <li>Schedule and release production orders and on-promise commitments across four manufacturing lines, tracking clear-to-build status - cut backlog $9K to $7.2K (-20%) in one week.</li>
-          <li>Manage daily material availability across all four lines, including catching and reversing a mis-fired planned order before it hit the schedule - cut material shortages 40% to 28% plant-wide.</li>
-          <li>Build dashboards for shift-plan optimization and RM/WIP/FG/MRO inventory by business family - cut inventory 15% and WIP 35% to 25%, adopted by a 30-person planning team.</li>
+          <li>Schedule and release production orders and on-promise commitments across four manufacturing lines, tracking clear-to-build status. Cut backlog $9K to $7.2K (-20%) in one week.</li>
+          <li>Manage daily material availability across all four lines, including catching and reversing a mis-fired planned order before it hit the schedule. Cut material shortages 40% to 28% plant-wide.</li>
+          <li>Build dashboards for shift-plan optimization and RM/WIP/FG/MRO inventory by business family. Cut inventory 15% and WIP 35% to 25%, adopted by a 30-person planning team.</li>
           <li>Break down line-level plans across three business families for S&amp;OP, and coordinate twice weekly with line supervisors on cycle counts and JIT delivery.</li>
         </ul>
       </div>
@@ -352,10 +350,10 @@ footer { background: var(--black); color: rgba(255,255,255,0.4); display: flex; 
         <div class="exp-role">Associate Consultant - Supply Chain &amp; Production Planning</div>
         <div class="exp-company">Jio Platforms Limited · Mumbai, India</div>
         <ul class="exp-bullets">
-          <li>Owned master production scheduling and capacity planning, building dashboards that tracked supply-demand gaps and backorder risk - cut sourcing turnaround 20% and lifted on-time delivery across 200+ merchant sites.</li>
-          <li>Built MRP demand models across 10K+ SKUs using 60-day rolling averages and dynamic reorder points - cut stockouts 22% and reduced working capital tied up in safety stock.</li>
+          <li>Owned master production scheduling and capacity planning, building dashboards that tracked supply-demand gaps and backorder risk. Cut sourcing turnaround 20% and lifted on-time delivery across 200+ merchant sites.</li>
+          <li>Built MRP demand models across 10K+ SKUs using 60-day rolling averages and dynamic reorder points. Cut stockouts 22% and reduced working capital tied up in safety stock.</li>
           <li>Ran root cause analysis on 50+ suppliers across 200+ locations by OTD, lead-time variance, and SLA risk, driving sourcing decisions that cut procurement spend 15%+ across the vendor base company-wide.</li>
-          <li>Applied lean principles and A/B tested changes to remove wasteful steps from 3PL warehouse fulfillment workflows - cut order cycle time 25% and grew throughput 30% network-wide.</li>
+          <li>Applied lean principles and A/B tested changes to remove wasteful steps from 3PL warehouse fulfillment workflows. Cut order cycle time 25% and grew throughput 30% network-wide.</li>
         </ul>
       </div>
     </div>
@@ -366,9 +364,9 @@ footer { background: var(--black); color: rgba(255,255,255,0.4); display: flex; 
         <div class="exp-role">Assistant Program Manager - ERP Strategy &amp; Process Management</div>
         <div class="exp-company">Jio Platforms Limited · Mumbai, India</div>
         <ul class="exp-bullets">
-          <li>Standardized S&amp;OP KPIs across 3 business units - cut metric ambiguity 35% and improved planning cycles 40%, giving leadership one reliable view for the first time.</li>
-          <li>Led BOM accuracy checks and Kanban-based standard work mapping across 10+ planning and warehouse workstreams during a 200K+ user ERP/WMS migration - cut task completion time 18%.</li>
-          <li>Built and ran monthly executive S&amp;OP reviews on inventory, freight variance, and supply-network risk - became leadership's primary forum for production and sourcing decisions company-wide.</li>
+          <li>Standardized S&amp;OP KPIs across 3 business units. Cut metric ambiguity 35% and improved planning cycles 40%, giving leadership one reliable view for the first time.</li>
+          <li>Led BOM accuracy checks and Kanban-based standard work mapping across 10+ planning and warehouse workstreams during a 200K+ user ERP/WMS migration. Cut task completion time 18%.</li>
+          <li>Built and ran monthly executive S&amp;OP reviews on inventory, freight variance, and supply-network risk. Became leadership's primary forum for production and sourcing decisions company-wide.</li>
         </ul>
       </div>
     </div>
@@ -379,7 +377,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.4); display: flex; 
         <div class="exp-role">Data Analyst Intern</div>
         <div class="exp-company">In-time Consultancy · Mumbai, India</div>
         <ul class="exp-bullets">
-          <li>Built Power BI dashboards and automated weekly reports that flagged SLA risk before escalation - cut ad-hoc reporting requests 40%.</li>
+          <li>Built Power BI dashboards and automated weekly reports that flagged SLA risk before escalation. Cut ad-hoc reporting requests 40%.</li>
         </ul>
       </div>
     </div>
@@ -400,7 +398,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.4); display: flex; 
     </div>
     <div class="award-row reveal">
       <div class="award-title">Rising Leader Recognition - Jio Platforms Limited</div>
-      <div class="award-detail">Built a KPI reporting dashboard that aligned 3 business units - became the standard planning reference, staying in use after handover.</div>
+      <div class="award-detail">Built a KPI reporting dashboard that aligned 3 business units. Became the standard planning reference, staying in use after handover.</div>
     </div>
   </div>
 </section>
@@ -415,7 +413,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.4); display: flex; 
         <div class="personal-num">01</div>
         <div class="personal-emoji">💃</div>
         <div class="personal-title">I dance. Seriously.</div>
-        <p>When I'm not scheduling a line, I'm on the dance floor. No "wrong output" there - just movement.</p>
+        <p>When I'm not scheduling a line, I'm on the dance floor. No "wrong output" there. Just movement.</p>
         <div class="personal-card-tag">Hobby #1</div>
       </div>
       <div class="personal-card reveal">
@@ -454,7 +452,7 @@ footer { background: var(--black); color: rgba(255,255,255,0.4); display: flex; 
 <section id="contact">
   <div class="max">
     <div class="section-label" style="color:rgba(255,255,255,0.4);"><svg class="gear-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M22 12h-3M5 12H2M19.07 4.93l-2.12 2.12M7.05 16.95l-2.12 2.12M19.07 19.07l-2.12-2.12M7.05 7.05L4.93 4.93" stroke-linecap="round"/></svg>Connect</div>
-    <div class="contact-headline reveal">Let's<br>work <em>together</em></div>
+    <div class="contact-headline reveal">Let's work <em>together</em></div>
     <div class="contact-grid">
       <div class="contact-col reveal">
         <div class="contact-col-label">Direct</div>
